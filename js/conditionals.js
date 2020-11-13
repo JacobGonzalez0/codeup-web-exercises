@@ -167,8 +167,6 @@ function isNegative(input){
     return input < 0
 }
 
-
-
 if(confirm("Would you like to enter a number?")){
     var value = prompt("Enter that number please.")
 
