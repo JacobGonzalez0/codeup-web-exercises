@@ -1,5 +1,5 @@
 function numberSkip(){
-    var skipped
+    var skipped;
     do{
         skipped = prompt("Enter an odd number between 1 - 50", 23)
         //Sanitizes the input and prompts the user for another number if its not in the parms
@@ -7,12 +7,12 @@ function numberSkip(){
 
     var count = 1
     console.log("Here is an odd number: " + count);
-    while(count <49){
+    while(count < 49){
         count += 2;
         if(count == skipped) {
             //skips the odd number given to us
             console.log("Yikes! Skipping number: " + skipped);
-            continue;
+            mi
         }
         console.log("Here is an odd number: " + count);
     }
