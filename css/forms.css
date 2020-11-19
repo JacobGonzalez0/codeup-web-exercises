@@ -1,0 +1,96 @@
+ /* Created CSS Reset*/
+*{
+    padding:0;
+    margin:0;
+    border:0;
+}
+
+body{
+    background-image: url("../img/formBack.jpg");
+    background-size: cover
+}
+
+hr{
+    margin:auto;
+    width:60px;
+    padding-bottom:2em;
+    border-top: 2px solid #4e85d7;
+}
+
+/* Create the container thats centered with margin/width */
+.container{
+    margin:auto;
+    width:320px;
+    margin-top:3em;
+    padding-bottom:2em;
+    background-color: #f1f2f4;
+    box-shadow: 5px 7px 10px #888888;
+}
+
+
+.container h1{
+    padding-top:1em;
+    
+    text-align:center;
+    font-weight:500
+}
+
+.title{
+    display:inline; /*this makes the div inline for the colored title*/
+    color:#4e85d7;
+    font-weight:600
+}
+
+.container form{
+    width:100%;
+    text-align:center
+}
+
+.smInput{
+    padding:.8em;
+    font-size:1.05em;
+    border-radius:10px;
+    margin:.5em;
+    font-weight:bold;
+}
+
+.lgInput{
+    padding:.8em; 
+    border-radius:10px;
+    margin:.8em;
+    font-weight:bold;
+    resize:none; /* Stops the textbox from resizing */
+}
+
+.labelCenter{
+    font-weight:bold;
+}
+
+.radio{
+    display:grid;
+    grid-template-columns: auto 20px;
+    text-align:left;
+    padding:1em;
+    margin:auto;
+    width:80%;
+}
+
+.submit{
+    color:white;
+    background-color: #4e85d7;
+    font-weight: bold;
+    padding: .8em;
+    margin-top:2em;
+    border-radius:10px;
+    width: 85%;
+}
+
+.container select{
+    width:85%;
+    padding:.8em;
+    color:white;
+    background-color:#92a7c6;
+    margin:.8em ;
+    border-radius:10px;
+    font-weight:bold;
+}
