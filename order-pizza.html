@@ -27,13 +27,15 @@
                 </li>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Zip code" aria-label="Search">
-                    <button class="btn btn-success my-2 my-sm-0" type="submit">Search stores near you!</button>
+                    <button class="btn btn-secondary
+                     my-2 my-sm-0" type="submit">Search stores near you!</button>
                 </form>
                 
                 
                 
               </ul>
               <div class="btn my-2 my-sm-0 justify-content-end"> 
+                <!-- Font awesome user icon! :D -->
                 <i class="fas fa-user"></i>
                 Sign up!
             </div>
@@ -49,7 +51,7 @@
                 </div>
                 
               </div>
-              
+              <!-- Tab data toggles-->
               <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="size-tab" data-toggle="tab" href="#size" role="tab" aria-controls="size" aria-selected="false"><span class="badge badge-pill badge-dark">1</span>Size and Crust</a>
@@ -62,11 +64,13 @@
                 </li>
               </ul>
     
+              <!-- Form starts-->
               <form action="https://request-inspector.glitch.me/" method="post">
     
                 <div class="tab-content" id="myTabContent">
-    
-                    <div class="card m-4 tab-pane fade show active" id="size" role="tab" aria-labelledby="size-tab">
+                    
+                    <!--First tab-->
+                    <div class="card m-4 tab-pane explode show active" id="size" role="tab" aria-labelledby="size-tab">
                         <div class="card-header bg-primary text-white ">
                             Choose size and crust
                         </div>
@@ -96,7 +100,7 @@
                                 </li>
                             
                             </ul>
-                            
+                                                
                         </div>
     
                         <div class="card m-3" >
@@ -126,11 +130,13 @@
                             </ul>
                         </div>
     
+                        <!-- Switch tab with button, no onClick function-->
                         <div class="card-footer text-right">
-                            <button type="button" class="btn btn-primary btnNext" data-toggle="tab" href="#cheese" aria-controls="cheese" aria-selected="false">Next</button>
+                            <button type="button" class="btn btn-primary btnNext" data-toggle="tab" href="#cheese" >Next</button>
                         </div>
                     </div>
     
+                    <!--Second tab-->
                     <div class="card m-4 tab-pane fade" id="cheese" role="tabpanel" aria-labelledby="cheese-tab">
                         <div class="card-header bg-primary text-white ">
                             Choose cheese and sauce
@@ -193,6 +199,7 @@
     
                     </div>
     
+                    <!--Last tab-->
                     <div class="card m-4 tab-pane fade" id="toppings" role="tabpanel" aria-labelledby="toppings-tab">
     
                         <div class="card-header bg-primary text-white">
@@ -275,7 +282,7 @@
                             </ul>
     
                             <div class="card-footer text-right">
-                                <button type="button" class="btn btn-primary btnNext" data-toggle="tab" href="#size" role="tab" aria-controls="size" aria-selected="true">Back</button>
+                                <button type="button" class="btn btn-primary btnNext" data-toggle="tab" href="#cheese" role="tab" aria-controls="cheese" aria-selected="true">Back</button>
     
                                 <button type="submit" class="btn btn-primary btnNext bg-success"> <i class="fas fa-shopping-cart"></i> Checkout</button>
                                 
@@ -295,7 +302,28 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
 <script>
+    // $(".btn").click(e=>{
 
+    //     var href = $(e.target).attr("href")
+    //     switch(href){
+    //         case "#size": 
+    //             $("#size").show()
+    //             $("#toppings").hide();
+    //             $("#cheese").tab(hid)
+    //             break;
+    //         case "#cheese":
+    //             $("#size").hide();
+    //             $("#toppings").hide();
+    //             $("#cheese").show()
+    //             break;
+    //         case "#toppings":
+    //             $("#size").hide();
+    //             $("#toppings").show()
+    //             $("#cheese").hide()
+    //             break;
+    //     }
+        
+    // })
     
 </script>
 
