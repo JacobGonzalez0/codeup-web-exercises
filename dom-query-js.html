@@ -25,20 +25,30 @@
     culpa qui officia deserunt mollit anim id est laborum.
 </p>
 
+<button class="event">First event</button>
+<button class="event">Second event</button>
+<button class="event">Third event</button>
+<button class="event">Fourth event</button>
+
 <script>
     (function() {
         "use strict";
         // TODO: Uncomment next line and get the main header element by id
+        
+
+       
+
+
         var mainHeader = document.getElementById("main-header");
 
         // TODO: Set inner html of mainHeader to "JavaScript is Cool"
-        mainHeader.innerHTML = "JavaScript is Cool"
+        
 
         // TODO: Uncomment the next line and get the sub header element by id
         var subHeader = document.getElementById("sub-header");
 
         // TODO: Set the text color of subHeader to blue
-        subHeader.style.color = "blue"
+        
 
         // TODO: Uncomment the next line and get all list items
         var listItems = document.getElementsByTagName("li");
@@ -55,7 +65,32 @@
 
         // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
         // subParagraphs[0].innerHTML = "Mission Accomplished! <br> <br>" + subParagraphs[0].innerHTML
-        subParagraphs[0].innerHTML = "Mission Accomplished!" 
+        
+
+        
+        Array.from(document.getElementsByClassName("event")).forEach( (button, i)=>{
+
+        var index = i;
+            
+        button.onclick = ()=>{
+            switch(index){
+                case 0: mainHeader.innerHTML = "JavaScript is Cool";
+                    break;
+                case 1: subHeader.style.color = "blue"
+                    break;
+                case 2: 
+                        for(var i = 0; i < listItems.length; i += 2){
+                                listItems.item(i).style.color = "blue"
+                        };
+                    break;
+                case 3:   
+                        subParagraphs[0].innerHTML = "Mission Accomplished!" ;
+                    break;
+            }
+        }
+
+        })
+
     })();
 </script>
 </body>
