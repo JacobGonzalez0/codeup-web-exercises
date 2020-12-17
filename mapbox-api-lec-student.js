@@ -32,12 +32,12 @@ var map = new mapboxgl.Map({
 
 // TODO TOGETHER: Add a marker to the map using the following coordinates [-98.4916, 29.4260]. This marker will mark the Alamo on our map.
 // TODO TOGETHER: Change the color of the marker
-// var marker = new mapboxgl.Marker({
-//     color: "#55FF11",
-//     draggable: true
-//     })
-//     .setLngLat([-98.4916, 29.4260])
-//     .addTo(map);
+var marker = new mapboxgl.Marker({
+    color: "#55FF11",
+    draggable: true
+    })
+    .setLngLat([-98.4916, 29.4260])
+    .addTo(map);
 
 
 // TODO: Experiment with the color, and setting the LngLat
@@ -53,22 +53,22 @@ var map = new mapboxgl.Map({
 
 // TODO TOGETHER: Add a popup to the map over codeup. Set the html as a paragraph that says "Codeup Rocks!"
 // TODO TOGETHER: Comment out the popup we just added. Add a popup to the alamo marker.
-// var markerHeight = 50, markerRadius = 10, linearOffset = 25;
-// var popupOffsets = {
-// 'top': [0, 0],
-// 'top-left': [0,0],
-// 'top-right': [0,0],
-// 'bottom': [0, -markerHeight],
-// 'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-// 'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
-// 'left': [markerRadius, (markerHeight - markerRadius) * -1],
-// 'right': [-markerRadius, (markerHeight - markerRadius) * -1]
-// };
-// var popup = new mapboxgl.Popup({offset: popupOffsets, className: 'my-class'})
-// .setLngLat([-98.4916, 29.4260])
-// .setHTML("<h1>codeup rocks!</h1>")
-// .setMaxWidth("300px")
-// .addTo(map);
+var markerHeight = 50, markerRadius = 10, linearOffset = 25;
+var popupOffsets = {
+'top': [0, 0],
+'top-left': [0,0],
+'top-right': [0,0],
+'bottom': [0, -markerHeight],
+'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+'left': [markerRadius, (markerHeight - markerRadius) * -1],
+'right': [-markerRadius, (markerHeight - markerRadius) * -1]
+};
+var popup = new mapboxgl.Popup({offset: popupOffsets, className: 'my-class'})
+.setLngLat([-98.4916, 29.4260])
+.setHTML("<h1>codeup rocks!</h1>")
+.setMaxWidth("300px")
+.addTo(map);
 
 
 // TODO: Review the popup docs. What are some additional options we can pass to the popup?
@@ -93,7 +93,7 @@ var map = new mapboxgl.Map({
 //TODO: Instead of setCenter try using map.jumpTo()
 //TODO: Instead of setCenter try using map.flyTo()
 
-geocode()
+// geocode()
 
 // TODO TOGETHER: Reverse Geocoding: Using the reverse geocoding method, enter the coordinates {lng: -98.4861, lat: 29.4260} to get a physical address for the alamo
 // TODO: Reverse geocode coordinates of your choice using the reverse geocode method
