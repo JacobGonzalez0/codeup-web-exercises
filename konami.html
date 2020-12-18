@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konami Code</title>
+</head>
+<body>
+    <h1>Konami Code</h1>
+
+    <canvas id="myCanvas" width="256" height="220" style="border: 1px solid black"></canvas>
+    <audio id="music" src="snd/jungle1.mp3"></audio>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.js'></script>
+    <script>
+        "use strict";
+
+        
+
+        var keyBuffer = [];
+
+        //The konami code
+        var kode = [38,38,40,40,37,39,37,39,66,65,13];
+
+        var music = document.getElementById("music")
+        
+
+        //we check the buffer each press to see if it matches 
+        //the code so far, if not clear it
+        
+
+        $(document).keyup(function(event){
+            
+
+            keyBuffer.push(event.keyCode);
+
+            keyBuffer.forEach((key, index) => {
+                if (kode[index] !== key) {
+                    keyBuffer = [];
+                }
+            })
+
+            if (keyBuffer.length === kode.length) {
+                alert("You have added 30 lives!")
+                music.play()
+                animate()
+                keyBuffer = [];
+            } 
+            console.log(keyBuffer);
+
+        });
+
+        var canvas = document.getElementById("myCanvas")
+        var ctx = canvas.getContext("2d")
+
+        var background = new Image();
+        background.src = "img/background.png";
+        background.xPos = 0
+        background.direction = 0;
+
+        
+
+        function animate(){
+
+            ctx.drawImage(
+                background,
+                background.xPos,
+                0)
+
+            if(background.direction == 0){
+                background.xPos--
+            }else if(background.direction == 1){
+                background.xPos++
+            }
+            
+            console.log(background.xPos)
+            if(background.xPos == -3456){
+                background.direction = 1
+            }else if(background.xPos == -1){
+                background.direction = 0
+            }
+            
+            requestAnimationFrame(animate)
+        }
+
+        
+
+        
+
+        
+
+    </script>
+</body>
+</html>
