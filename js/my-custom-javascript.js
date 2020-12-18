@@ -1,11 +1,17 @@
 "use strict";
 
-$(document).ready(function() {
+// $(document).ready(function() {
 
-    // INSERT JAVASCRIPT CODE SAMPLE HERE
-    alert("Page is loaded")
-});
+//     // INSERT JAVASCRIPT CODE SAMPLE HERE
+//     alert("Page is loaded")
+// });
 
-$("#types li").attr("class","codeup")
+$('p').dblclick((e)=>{
+    $(e.target).css("font-size","18px")
+})
 
-$(".codeup").css("border","1px solid red")
+$('li').hover(e=>{
+    $(e.target).css("color","red")
+},e=>{
+    $(e.target).css("color","black")
+})
