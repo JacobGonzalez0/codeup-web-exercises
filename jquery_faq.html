@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jquery FAQ</title>
 </head>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 <style>
     .invisible{
         visibility: hidden;
@@ -44,5 +45,13 @@
         <dd class="invisible">Concessioners provide park visitors with lodging, transportation, food services, shops, guiding, and other services.</dd>
 
     </dl>
+    <button id="toggler">Show Answers</button>
 </body>
+<script>
+    $("#toggler").click( ()=>{
+        $("dd").toggleClass("invisible")
+    })
+
+</script>
+
 </html>
