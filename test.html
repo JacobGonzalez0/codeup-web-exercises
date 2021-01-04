@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .boxes{
+        display:grid;
+        grid-template-columns: repeat(4,220px);
+    }
+    .boxes div{
+        border: 1px solid black;
+        margin:2em;
+        padding:1em;
+        font-size: 1.2em;
+    }
+</style>
+<body>
+    
+<h1 class="jQuery">
+    Codeup!
+</h1>
+
+<div class="boxes">
+
+    <div>
+        Setup Listener "$(className)" -> 
+    </div>
+    <div>
+        check the event object -> 
+    </div>
+    <div>
+        test against the object -> 
+    </div>
+    <div>
+        do a function
+    </div>
+
+</div>
+
+</body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.js'></script>
+<script>
+
+    $(document).keydown( function(e){
+        console.log("The event object below")
+        console.log(e.keyCode)
+
+        console.log("Keydown!: " + e.keyCode)
+
+    })
+
+    $(".jQuery").click( function(e){
+        console.log(e)
+    })
+
+
+</script>
+</html>
