@@ -10,6 +10,9 @@
     .invisible{
         visibility: hidden;
     }
+    .highlight{
+        background-color:yellow;
+    }
 </style>
 <body>
     <dl>
@@ -51,6 +54,11 @@
     $("#toggler").click( ()=>{
         $("dd").toggleClass("invisible")
     })
+
+    $("dt").click( (t)=>{
+        $(t.target).toggleClass("highlight")
+    })
+
 
 </script>
 
