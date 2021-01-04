@@ -79,6 +79,9 @@
         <li>Death Valley National Park covers a total area of 3,367,627 acres</li>
     </ul>
 
+    <button id="lastFact">
+        Highlight Last Fact
+    </button>
 
 </body>
 <script>
@@ -89,6 +92,15 @@
     $("dt").click( (t)=>{
         $(t.target).toggleClass("highlight")
     })
+
+    $("#lastFact").click( ()=>{
+        $("ul").each( (i,element)=>{
+            $(element).children().last().toggleClass("highlight")
+        })
+    })
+
+
+    
 
 
 </script>
