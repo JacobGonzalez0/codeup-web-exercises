@@ -13,6 +13,9 @@
     .highlight{
         background-color:yellow;
     }
+    .bold{
+        font-weight: bold;
+    }
     dt{
         cursor: pointer;
     }
@@ -98,6 +101,10 @@
             $(element).children().last().toggleClass("highlight")
         })
     })
+
+    $("h3").click( (t)=>{
+        $(t.target).next().toggleClass("bold")
+    } )
 
 
     
