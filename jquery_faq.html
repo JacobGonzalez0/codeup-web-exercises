@@ -25,6 +25,8 @@
 </style>
 <body>
     <h1>Would you like to sign up for our newsletter? <span id="newsClose">X</span> </h1>
+
+    <h2 id="register" class="invisible">Would you like to register?</h2>
     <dl>
 
         <dt>Who is the director of the National Park Service?</dt>
@@ -92,7 +94,8 @@
 
 </body>
 <script>
-    $("ul").slideToggle()
+    $("ul").hide()
+    $("#register").hide()
 
     $("#toggler").click( ()=>{
         $("dd").toggleClass("invisible")
@@ -122,6 +125,11 @@
         $(t.target).parent().fadeToggle()
     })
 
+    
+    setTimeout(function () {
+        $("#register").toggleClass("invisible")
+        $("#register").fadeIn()
+    }, 8000);
 
     
 
