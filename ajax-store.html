@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)https://java.codeup.com/examples/javascript/ajax-store.html -->
+<html data-arp-injected="true"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Online Store</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css'/>
+</head>
+<body>
+
+<h1>My Tool Store</h1>
+
+    <div class="container-fluid">
+        <div class="row text-center font-weight-bold p-2">
+            <div class="col-3">Title</div>
+            <div class="col-3">Quantity</div>
+            <div class="col-3">Price</div>
+            <div class="col-3">Categories</div>
+        </div>
+        <div class="row" id="insertProducts">
+            Loading..
+        </div>
+
+        <button id="reload" class="btn btn-primary my-3">Reload</button>
+    </div>
+
+    
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
+
+<script>
+(function() {
+    "use strict";
+    // TODO: Create an AJAX  GET request for the file under data/inventory.json
+
+    $.ajax("/data/inventory.json").done( (data, status)=>{
+        if(status == "success"){
+            parseData(data)
+        }
+    })
+
+    $("#reload").click( ()=>{
+        document.getElementById("insertProducts").innerHTML = ""
+        $.ajax("/data/inventory.json").done( (data, status)=>{
+            if(status == "success"){
+                parseData(data)
+            }
+        })
+    })
+
+    function parseData(data){
+
+        document.getElementById("insertProducts").innerHTML = ""
+
+        data.forEach( obj =>{
+            //wrapper
+            var element = document.createElement("div")
+            element.setAttribute("class","row")
+            
+            var title = document.createElement("div")
+            title.setAttribute("class","col-3")
+            title.innerHTML = obj.title
+
+            var quantity = document.createElement("div")
+            quantity.setAttribute("class","col-3")
+            quantity.innerHTML = obj.quantity
+
+            var categories = document.createElement("div")
+            categories.setAttribute("class","col-3")
+            
+            obj.categories.forEach(( cat, i) =>{
+                if(i == obj.categories.length-1){
+                    categories.innerHTML += cat 
+                }else{
+                    categories.innerHTML += cat + ", "
+                }
+            })
+
+            var price = document.createElement("div")
+            price.setAttribute("class","col-2")
+            price.innerHTML = obj.price
+
+            document.getElementById("insertProducts").appendChild(title)
+            document.getElementById("insertProducts").appendChild(quantity)
+            document.getElementById("insertProducts").appendChild(price)
+            document.getElementById("insertProducts").appendChild(categories)
+
+            //document.getElementById("insertProducts").appendChild(element)
+
+
+        })
+    }
+
+    // TODO: Take the data from inventory.json and append it to the products table
+    //       HINT: Your data should come back as a JSON object; use console.log() to inspect
+    //             its contents and fields
+    //       HINT: You will want to target #insertProducts for your new HTML elements
+})();
+</script>
+
+
+
+</body></html>

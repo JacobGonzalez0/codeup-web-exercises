@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css'/>
+</head>
+<body>
+    <div class="container">
+        <h2>My own blog!</h2>
+        <div id="posts">
+            Loading...
+        </div>
+
+
+    </div>
+    
+</body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script>
+    $.ajax("/data/blog.json").done( (data, status)=>{
+        if(status == "success"){
+            console.log(data)
+            parseData(data)
+        }
+    })
+
+    function parseData(data){
+
+        document.getElementById("posts").innerHTML = ""
+
+        data.forEach( post=>{
+            //container for the overall post
+            var container = document.createElement("div")
+            container.setAttribute("class","container p-4")
+            
+            //setup first row
+            var rowOne = document.createElement("div");
+            rowOne.setAttribute("class","row")
+
+            var title = document.createElement("h3");
+            title.setAttribute("class","col")
+            title.innerHTML = post.title;
+
+            var date = document.createElement("div");
+            date.setAttribute("class","col-3 align-self-center text-right")
+            date.innerHTML = post.date;
+
+            rowOne.appendChild(title);
+            rowOne.appendChild(date);
+
+            //setup second row
+            var rowTwo = document.createElement("div");
+            rowTwo.setAttribute("class","row p-2")
+
+            var content = document.createElement("div");
+            content.setAttribute("class","col-12")
+            content.innerHTML = post.content;
+
+            rowTwo.appendChild(content)
+
+            //setup third row
+            var rowThree = document.createElement("div");
+            rowThree.setAttribute("class","col")
+
+            var tags = document.createElement("div")
+            post.categories.forEach( (tag, i )=>{
+                if(i == post.categories.length-1){
+                    tags.innerHTML += tag
+                }else{
+                    tags.innerHTML += tag + ", "
+                }
+            })
+
+            rowThree.appendChild(tags)
+
+            container.appendChild(rowOne)
+            container.appendChild(rowTwo)
+            container.appendChild(rowThree)
+
+            document.getElementById("posts").appendChild(container)
+
+        })
+    }
+</script>
+</html>
