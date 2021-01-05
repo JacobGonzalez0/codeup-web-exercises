@@ -63,7 +63,7 @@
 
 
     <h3>Arches</h3>
-    <ul>
+    <ul class="invisible">
         <li>Highest Elevation: Elephant Butte 5,653 feet</li>
         <li>Lowest Elevation: Visitor Center 4,085 feet</li>
         <li>Landscape Arch has a light opening 306 feet (93.3 meters) across.</li>
@@ -71,7 +71,7 @@
     </ul>
 
     <h3>Big Bend</h3>
-    <ul>
+    <ul class="invisible">
         <li>Big Bend was made a national park on June 20, 1935</li>
         <li>The lowest elevation found in Big Bend is 1,715 feet at the Rio Grande River</li>
         <li>The highest elevation found in Big Bend is 7,832 feet on Emory Peak</li>
@@ -79,7 +79,7 @@
     </ul>
 
     <h3>Death Valley</h3>
-    <ul>
+    <ul class="invisible">
         <li>Death Valley was made a national park on October 31, 1994</li>
         <li>The lowest elevation found in Death Valley is -282 feet at Badwater</li>
         <li>The highest elevation found in Death Valley is 11,049 feet at Telescope Peak</li>
@@ -92,6 +92,8 @@
 
 </body>
 <script>
+    $("ul").slideToggle()
+
     $("#toggler").click( ()=>{
         $("dd").toggleClass("invisible")
     })
@@ -107,7 +109,9 @@
     })
 
     $("h3").click( (t)=>{
-        $(t.target).next().toggleClass("bold")
+        
+        $(t.target).next().slideToggle()
+        $(t.target).next().toggleClass("invisible")
     } )
 
     $("li").click( (t)=>{
@@ -115,7 +119,7 @@
     })
 
     $("#newsClose").click( (t)=>{
-        $(t.target).parent().fadeOut()
+        $(t.target).parent().fadeToggle()
     })
 
 
