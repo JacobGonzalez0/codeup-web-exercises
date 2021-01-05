@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jquery FAQ</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css'/>
 </head>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+
 <style>
     .invisible{
         visibility: hidden;
@@ -19,86 +20,162 @@
     .blue{
         color:blue;
     }
+
+    .registerSlider{
+        position:fixed;
+        bottom:0;
+    }
+
+    .newsBox{
+        position:fixed;
+        bottom:0;
+        right:0;
+        width:18em;
+        
+        
+    }
+    .newsBox h1{
+        font-size:1.2em
+    }
+    .registerSlider{
+        width:100%;
+
+    }
     dt{
         cursor: pointer;
     }
 </style>
 <body>
-    <h1>Would you like to sign up for our newsletter? <span id="newsClose">X</span> </h1>
 
-    <h2 id="register" class="invisible">Would you like to register?</h2>
-    <dl>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Hey there!</strong> Hope youre enjoying this experience.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 
-        <dt>Who is the director of the National Park Service?</dt>
-        <dd class="invisible">Margaret Everson, Counselor to the Secretary, is exercising the delegated authority of the Director of the National Park Service.</dd>
+    <div class="modal-dialog newsBox m-3" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h1>Would you like to sign up for our newsletter?</h1>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="newsClose" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Sure!</button>
+          </div>
+        </div>
+      </div>
     
-        <dt>What government agency oversees the National Park Service?</dt>
-        <dd class="invisible">The National Park Service is a bureau of the Department of the Interior. Directly overseeing its operation is the department's Assistant Secretary for Fish, Wildlife and Parks.</dd>
+    <div class="registerSlider p-4 bg-info invisible" >
+        <h2 id="register"></h2>
+    </div>
+
+    <div class="modal fade" id="registerSlider" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <h5 class="modal-title" id="exampleModalLabel">Would you like to register?</h5>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+    <div class="container mt-4">
+
+        <h1 class="text-center p-4">National Parks Page!</h1>
+
+        <dl class="p-0 p-sm-3">
+
+            <dt>Who is the director of the National Park Service?</dt>
+            <dd class="invisible">Margaret Everson, Counselor to the Secretary, is exercising the delegated authority of the Director of the National Park Service.</dd>
+        
+            <dt>What government agency oversees the National Park Service?</dt>
+            <dd class="invisible">The National Park Service is a bureau of the Department of the Interior. Directly overseeing its operation is the department's Assistant Secretary for Fish, Wildlife and Parks.</dd>
+        
+            <dt>How old is the National Park System?</dt>
+            <dd class="invisible">The National Park Service was created by an act signed by President Woodrow Wilson on August 25, 1916. Yellowstone National Park was established by an act signed by President Ulysses S. Grant on March 1, 1872, as the nation's first national park. View the National Park System timeline.</dd>
     
-        <dt>How old is the National Park System?</dt>
-        <dd class="invisible">The National Park Service was created by an act signed by President Woodrow Wilson on August 25, 1916. Yellowstone National Park was established by an act signed by President Ulysses S. Grant on March 1, 1872, as the nation's first national park. View the National Park System timeline.</dd>
+            <dt>How many areas are in the National Park System?</dt>
+            <dd class="invisible">The system includes 423 areas covering more than 85 million acres in every state, the District of Columbia, American Samoa, Guam, Puerto Rico, and the Virgin Islands.</dd>
+    
+            <dt>How many people visit the national parks?</dt>
+            <dd class="invisible">Total recreation visitors to the national parks in 2019: 327,516,619.</dd>
+    
+            <dt>How do I obtain a park entrance pass?</dt>
+            <dd class="invisible">Fewer than one-third of the national parks charge entrance fees. You can obtain park entrance passes by visiting a park site that charges an entrance fee. Entrance fee sites have passes available; we recommend calling a park prior to your visit.</dd>
+    
+            <dt>How do I reserve a tour in a park?</dt>
+            <dd class="invisible">Fewer than one-third of the national parks charge entrance fees. You can obtain park entrance passes by visiting a park site that charges an entrance fee. Entrance fee sites have passes available; we recommend calling a park prior to your visit.</dd>
+    
+            <dt>Can I bring my service dog to a national park?</dt>
+            <dd class="invisible">Yes, service dogs are legally permitted anywhere in a park that visitors can go. Learn more about service animals in national parks, including the difference between service animals and emotional support animals.</dd>
+    
+            <dt>What do I need to know about driving off road in national parks</dt>
+            <dd class="invisible">Before you head out, check with the national parks that you intend to visit. In many national parks, off-road driving is illegal. Where off-road driving is allowed, the National Park Service regulates it.</dd>
+    
+            <dt>What are concessions?</dt>
+            <dd class="invisible">Concessioners provide park visitors with lodging, transportation, food services, shops, guiding, and other services.</dd>
+    
+        </dl>
 
-        <dt>How many areas are in the National Park System?</dt>
-        <dd class="invisible">The system includes 423 areas covering more than 85 million acres in every state, the District of Columbia, American Samoa, Guam, Puerto Rico, and the Virgin Islands.</dd>
+        <button class="btn btn-primary my-4 m-0 m-sm-3" id="toggler">Show Answers</button>
+        
+    
+    
+        <div class="p-0 p-sm-3">
+            <h3>Arches</h3>
+            <ul class="invisible">
+                <li>Highest Elevation: Elephant Butte 5,653 feet</li>
+                <li>Lowest Elevation: Visitor Center 4,085 feet</li>
+                <li>Landscape Arch has a light opening 306 feet (93.3 meters) across.</li>
+                <li>Double Arch South has a vertical light opening of 112 feet (34.1 meters).</li>
+            </ul>
+        
+            <h3>Big Bend</h3>
+            <ul class="invisible">
+                <li>Big Bend was made a national park on June 20, 1935</li>
+                <li>The lowest elevation found in Big Bend is 1,715 feet at the Rio Grande River</li>
+                <li>The highest elevation found in Big Bend is 7,832 feet on Emory Peak</li>
+                <li>Big Bend National Park covers a total area of 801,163 acres.</li>
+            </ul>
+        
+            <h3>Death Valley</h3>
+            <ul class="invisible">
+                <li>Death Valley was made a national park on October 31, 1994</li>
+                <li>The lowest elevation found in Death Valley is -282 feet at Badwater</li>
+                <li>The highest elevation found in Death Valley is 11,049 feet at Telescope Peak</li>
+                <li>Death Valley National Park covers a total area of 3,367,627 acres</li>
+            </ul>
 
-        <dt>How many people visit the national parks?</dt>
-        <dd class="invisible">Total recreation visitors to the national parks in 2019: 327,516,619.</dd>
-
-        <dt>How do I obtain a park entrance pass?</dt>
-        <dd class="invisible">Fewer than one-third of the national parks charge entrance fees. You can obtain park entrance passes by visiting a park site that charges an entrance fee. Entrance fee sites have passes available; we recommend calling a park prior to your visit.</dd>
-
-        <dt>How do I reserve a tour in a park?</dt>
-        <dd class="invisible">Fewer than one-third of the national parks charge entrance fees. You can obtain park entrance passes by visiting a park site that charges an entrance fee. Entrance fee sites have passes available; we recommend calling a park prior to your visit.</dd>
-
-        <dt>Can I bring my service dog to a national park?</dt>
-        <dd class="invisible">Yes, service dogs are legally permitted anywhere in a park that visitors can go. Learn more about service animals in national parks, including the difference between service animals and emotional support animals.</dd>
-
-        <dt>What do I need to know about driving off road in national parks</dt>
-        <dd class="invisible">Before you head out, check with the national parks that you intend to visit. In many national parks, off-road driving is illegal. Where off-road driving is allowed, the National Park Service regulates it.</dd>
-
-        <dt>What are concessions?</dt>
-        <dd class="invisible">Concessioners provide park visitors with lodging, transportation, food services, shops, guiding, and other services.</dd>
-
-    </dl>
-    <button id="toggler">Show Answers</button>
-
-
-
-    <h3>Arches</h3>
-    <ul class="invisible">
-        <li>Highest Elevation: Elephant Butte 5,653 feet</li>
-        <li>Lowest Elevation: Visitor Center 4,085 feet</li>
-        <li>Landscape Arch has a light opening 306 feet (93.3 meters) across.</li>
-        <li>Double Arch South has a vertical light opening of 112 feet (34.1 meters).</li>
-    </ul>
-
-    <h3>Big Bend</h3>
-    <ul class="invisible">
-        <li>Big Bend was made a national park on June 20, 1935</li>
-        <li>The lowest elevation found in Big Bend is 1,715 feet at the Rio Grande River</li>
-        <li>The highest elevation found in Big Bend is 7,832 feet on Emory Peak</li>
-        <li>Big Bend National Park covers a total area of 801,163 acres.</li>
-    </ul>
-
-    <h3>Death Valley</h3>
-    <ul class="invisible">
-        <li>Death Valley was made a national park on October 31, 1994</li>
-        <li>The lowest elevation found in Death Valley is -282 feet at Badwater</li>
-        <li>The highest elevation found in Death Valley is 11,049 feet at Telescope Peak</li>
-        <li>Death Valley National Park covers a total area of 3,367,627 acres</li>
-    </ul>
-
-    <button id="lastFact">
-        Highlight Last Fact
-    </button>
+            <button class="btn btn-primary my-4" id="lastFact">
+                Highlight Last Fact
+            </button>
+        </div>
+        
+    
+        
+    </div>
+    
 
 </body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js'></script>
 <script>
+
+    //setup hidden elements
     $("ul").hide()
-    $("#register").hide()
+    $("dd").hide()
+    $("#registerSlider").modal('hide')
+    $('.alert').hide()
 
     $("#toggler").click( ()=>{
         $("dd").toggleClass("invisible")
+        $("dd").slideToggle()
     })
 
     $("dt").click( (t)=>{
@@ -122,13 +199,13 @@
     })
 
     $("#newsClose").click( (t)=>{
-        $(t.target).parent().fadeToggle()
+        $(".newsBox").fadeToggle()
     })
 
-    
+    $(".alert").alert()
     setTimeout(function () {
-        $("#register").toggleClass("invisible")
-        $("#register").fadeIn()
+        $('#registerSlider').modal('toggle')
+        $('.alert').slideDown()
     }, 8000);
 
     
