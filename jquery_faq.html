@@ -16,11 +16,15 @@
     .bold{
         font-weight: bold;
     }
+    .blue{
+        color:blue;
+    }
     dt{
         cursor: pointer;
     }
 </style>
 <body>
+    <h1>Would you like to sign up for our newsletter? <span id="newsClose">X</span> </h1>
     <dl>
 
         <dt>Who is the director of the National Park Service?</dt>
@@ -105,6 +109,14 @@
     $("h3").click( (t)=>{
         $(t.target).next().toggleClass("bold")
     } )
+
+    $("li").click( (t)=>{
+        $(t.target).parent().toggleClass("blue")
+    })
+
+    $("#newsClose").click( (t)=>{
+        $(t.target).parent().fadeOut()
+    })
 
 
     
