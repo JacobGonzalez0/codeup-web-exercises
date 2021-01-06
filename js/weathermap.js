@@ -4,7 +4,7 @@ function get5Day(cords){
     let lat = Math.floor(cords[1])
     let long = Math.floor(cords[0])
 
-    $.ajax("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat +"&lon=" + long + "&appid=" + WEATHERKEY).done( (data,status)=>{
+    $.ajax("https://api.openweathermap.org/data/2.5/forecast?units=imperial&lat=" + lat +"&lon=" + long + "&appid=" + WEATHERKEY).done( (data,status)=>{
         if(status == "success"){
             console.log(data);
             createCard(data)
@@ -54,8 +54,10 @@ function createCard(data){
 
             //starts header 
             let header = document.createElement("div")
-            header.setAttribute("class","card-header")
-            header.innerHTML = day.dt_txt; 
+            header.setAttribute("class","card-header text-center font-weight-bold")
+            let date = new Date()
+            date.setTime(day.dt * 1000)
+            header.innerHTML = date.toLocaleDateString()
 
             //starts body
             let body = document.createElement("div");
@@ -64,7 +66,7 @@ function createCard(data){
             let temp = document.createElement("div")
             temp.setAttribute("class","temp");
             temp.setAttribute("class","pb-4")
-            temp.innerHTML = day.main.temp + " / " + day.main.feels_like
+            temp.innerHTML = day.main.temp + "&degF / " + day.main.feels_like + "&degF"
 
             let icon = document.createElement("img");
             icon.src = "http://openweathermap.org/img/w/" + day.weather[0].icon + ".png"
