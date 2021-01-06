@@ -44,7 +44,8 @@ function createCard(data){
 
 
             let card = document.createElement("div")
-            card.setAttribute("class","card flex-column mx-2")
+            card.setAttribute("class","flex-column card m-2 p-0")
+            card.setAttribute("style","min-width:12em")
 
             let hr = [];
             hr.push(document.createElement("hr"))
@@ -62,14 +63,15 @@ function createCard(data){
             
             let temp = document.createElement("div")
             temp.setAttribute("class","temp");
+            temp.setAttribute("class","pb-4")
             temp.innerHTML = day.main.temp + " / " + day.main.feels_like
 
             let icon = document.createElement("img");
-            icon.src = "icon-goes-here"
+            icon.src = "http://openweathermap.org/img/w/" + day.weather[0].icon + ".png"
 
             let description = document.createElement("div")
             description.setAttribute("class","description pb-4")
-            description.innerHTML = "something here"
+            description.innerHTML = day.weather[0].description
 
             let humidity = document.createElement("div")
             humidity.setAttribute("class","humidity")
