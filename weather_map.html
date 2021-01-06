@@ -14,10 +14,10 @@
         </nav>
 
 
-        <form action="/" class="row p-3 align-items-center justify-items-center">
+        <form onsubmit="return false" class="row p-3 align-items-center justify-items-center">
             <h4 class="col-auto">Search</h4>
             <input class="col-4 form-control" type="text" id="searchBar">
-            <button class="mx-2 col-2 btn btn-primary">Search</button>
+            <button class="mx-2 col-2 btn btn-primary" id="searchButton">Search</button>
         </form>
 
         <div class="d-flex flex-row" id="fiveDay">
@@ -57,5 +57,6 @@
     </div>
 </body>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script src="keys.js"></script>
 <script src="js/weathermap.js"></script>
 </html>
