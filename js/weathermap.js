@@ -1,8 +1,8 @@
 
 function get5Day(cords){
 
-    let lat = Math.floor(cords[1])
     let long = Math.floor(cords[0])
+    let lat = Math.floor(cords[1])
 
     $.ajax("https://api.openweathermap.org/data/2.5/forecast?units=imperial&lat=" + lat +"&lon=" + long + "&appid=" + WEATHERKEY).done( (data,status)=>{
         if(status == "success"){
@@ -14,25 +14,49 @@ function get5Day(cords){
 }
 
 function geoCode(search){
-    var input = ""
-    var args = String(search).split(" ")
-    args.forEach( (arg,i) =>{
-        if(i == search.length-1){
-            input += arg;
-        }else{
-            input += arg;
-            input += "%20"
-        } 
-    })
-    
-    $.ajax("https://api.mapbox.com/geocoding/v5/mapbox.places/" + input + ".json?access_token=" + MAPBOXAPI).done( (data,status)=>{
-        console.log(data.features[0].center)
-        get5Day(data.features[0].center)
-        
-    })
-}
 
-geoCode("san antonio")
+    if(typeof search == "object"){// if we give it an array
+
+        $.ajax("https://api.mapbox.com/geocoding/v5/mapbox.places/" + search[0] + "," + search[1] + ".json?access_token=" + MAPBOXAPI).done( (data,status)=>{
+        
+            document.getElementById("title").innerHTML = data.features[0].text + " - 5 Day Forcast"
+            currentLocation = data.features[0].center // sets up easy var to access
+            marker.setLngLat(data.features[0].center) //moves marker
+            map.flyTo({
+                center: data.features[0].center
+            }); // fly animation
+            get5Day(data.features[0].center) //get forcast
+        
+        })
+        
+    }else{ //otherwise its a search term
+        var input = ""
+        var args = String(search).split(" ")
+        args.forEach( (arg,i) =>{
+            if(i == args.length-1){
+                input += arg;
+            }else{
+                input += arg;
+                input += "%20"
+            } 
+        })
+        
+        $.ajax("https://api.mapbox.com/geocoding/v5/mapbox.places/" + input + ".json?access_token=" + MAPBOXAPI).done( (data,status)=>{
+        
+
+            document.getElementById("title").innerHTML = data.features[0].text + " - 5 Day Forcast"
+            currentLocation = data.features[0].center // sets up easy var to access
+            marker.setLngLat(data.features[0].center) //moves marker
+            map.flyTo({
+                center: data.features[0].center
+            }); // fly animation
+            get5Day(data.features[0].center) //get forcast
+        
+        })
+    }
+
+    
+}
 
 function createCard(data){
 
@@ -110,6 +134,8 @@ function createCard(data){
 
 }
 
+var currentLocation = [-98.4951, 29.4246]
+
 document.getElementById("searchBar").addEventListener('change', (e)=>{
     e.preventDefault()
     geoCode(e.target.value)
@@ -121,3 +147,23 @@ document.getElementById("searchButton").addEventListener('click', (e)=>{
     geoCode(e.target.value)
 })
 
+geoCode("san antonio")
+
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [-98, 39],
+    zoom: 7.5
+});
+
+var marker = new mapboxgl.Marker({
+    draggable:true,
+}).setLngLat([12.550343, 55.665957]).addTo(map);
+
+marker.on("dragend", (e)=>{
+    var cords = [
+        marker.getLngLat().lng,
+        marker.getLngLat().lat]
+    geoCode(cords)
+    //get5Day(cords)
+})

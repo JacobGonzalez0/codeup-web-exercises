@@ -4,29 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WeatherMap Project</title>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css'/>
+
 </head>
 <body>
-    <div class="container-fluid p-0">
+    <div class="container-fluid p-0 m-0">
 
-        <nav class="navbar navbar-expand bg-primary">
+        <nav class="navbar d-flex justify-content-between navbar-expand bg-primary">
             <a href="#" class="navbar-brand text-white ">WeatherMap App</a>
+
+            <div class="navbar-brand text-right text-white" id="title">San Antonio - 5 Day Forcast</div>
+
         </nav>
 
 
-        <form onsubmit="return false" class="row p-3 align-items-center justify-items-center">
+        <form onsubmit="return false" class="container-fluid row pt-3 align-items-center justify-items-center">
             <h4 class="col-auto">Search</h4>
-            <input class="col-4 form-control" type="text" id="searchBar">
-            <button class="mx-2 col-2 btn btn-primary" id="searchButton">Search</button>
+            <input class="col-4 form-control" placeholder="San Antonio" type="text" id="searchBar">
+            <button class="ml-2 col-2 btn btn-primary" id="searchButton">Search</button>
         </form>
 
+        
         <div class="d-flex flex-wrap justify-content-center" id="fiveDay">
 
             <div class="card mx-2">
-                <div class="card-header">Date Here</div>
+                <div class="card-header">Loading</div>
                 <div class="card-body text-center">
                     <div class="temp">
-                        75F
+                        Loading
                     </div>
                     <img src="" alt="icon">
                     <hr>
@@ -53,7 +60,7 @@
         </div>
         
 
-
+        <div id='map' class="w-100 pt-4" style="height: 22em;"></div>
     </div>
 </body>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
