@@ -6,7 +6,6 @@ function get5Day(cords){
 
     $.ajax("https://api.openweathermap.org/data/2.5/forecast?units=imperial&lat=" + lat +"&lon=" + long + "&appid=" + WEATHERKEY).done( (data,status)=>{
         if(status == "success"){
-            console.log(data);
             createCard(data)
         }
     })
