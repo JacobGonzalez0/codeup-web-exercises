@@ -1,3 +1,6 @@
+String.prototype.toProperCase = function () {
+    return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+};
 
 function get5Day(cords){
 
@@ -10,6 +13,29 @@ function get5Day(cords){
         }
     })
 
+}
+
+function changeBackground(city){
+
+    var input = ""
+    var args = String(city).split(" ")
+    args.forEach( (arg,i) =>{
+        if(i == args.length-1){
+            input += arg;
+        }else{
+            input += arg;
+            input += "-"
+        } 
+    })
+    
+    
+    $.ajax("https://api.teleport.org/api/urban_areas/slug:" + input.toLowerCase() + "/images/").done( (data,status)=>{
+        
+        document.getElementById("main").style.background = 'url("' + data.photos[0].image.web + '")'
+        document.getElementById("main").style.backgroundSize = "cover"
+    
+    })
+    
 }
 
 function geoCode(search){
@@ -42,7 +68,8 @@ function geoCode(search){
         
         $.ajax("https://api.mapbox.com/geocoding/v5/mapbox.places/" + input + ".json?access_token=" + MAPBOXAPI).done( (data,status)=>{
         
-
+            changeBackground(data.features[0].text)
+            
             document.getElementById("title").innerHTML = data.features[0].text + " - 5 Day Forcast"
             currentLocation = data.features[0].center // sets up easy var to access
             marker.setLngLat(data.features[0].center) //moves marker
@@ -67,8 +94,8 @@ function createCard(data){
 
 
             let card = document.createElement("div")
-            card.setAttribute("class","flex-column card m-2 p-0")
-            card.setAttribute("style","min-width:12em")
+            card.setAttribute("class","text-white flex-column card m-2 p-0")
+            card.setAttribute("style","min-width:12em; background: rgba(0,0,0,.65)")
 
             let hr = [];
             hr.push(document.createElement("hr"))
@@ -77,7 +104,8 @@ function createCard(data){
 
             //starts header 
             let header = document.createElement("div")
-            header.setAttribute("class","card-header text-center font-weight-bold")
+            header.setAttribute("class","card-header text-center  font-weight-bold");
+            header.setAttribute("style","background-image: linear-gradient( 180deg, rgba(25,120,190,1) 0%, rgba(37,60,119,1) 90% );")
             let date = new Date()
             date.setTime(day.dt * 1000)
             header.innerHTML = date.toLocaleDateString()
@@ -96,19 +124,19 @@ function createCard(data){
 
             let description = document.createElement("div")
             description.setAttribute("class","description pb-4")
-            description.innerHTML = day.weather[0].description
+            description.innerHTML = day.weather[0].description.toProperCase()
 
             let humidity = document.createElement("div")
             humidity.setAttribute("class","humidity")
-            humidity.innerHTML = day.main.humidity
+            humidity.innerHTML = "Humidity: " + day.main.humidity + "%"
 
             let wind = document.createElement("div")
             wind.setAttribute("class","wind")
-            wind.innerHTML = day.wind.speed + " MPH" 
+            wind.innerHTML = "Wind: " + day.wind.speed + " MPH" 
 
             let pressure = document.createElement("div")
             pressure.setAttribute("class","pressure")
-            pressure.innerHTML =  day.main.pressure
+            pressure.innerHTML =  "Pressure: " + day.main.pressure
 
             body.appendChild(temp)
             body.appendChild(icon)

@@ -9,25 +9,32 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css'/>
 
 </head>
-<body>
-    <div class="container-fluid p-0 m-0">
 
-        <nav class="navbar d-flex justify-content-between navbar-expand bg-primary">
-            <a href="#" class="navbar-brand text-white ">WeatherMap App</a>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400&display=swap');
+    *{
+        font-family: 'Oswald', sans-serif;
+    }
+</style>
+    
+<body>
+    <div id="main" class="container-fluid p-0 m-0">
+
+        <nav class="navbar d-flex justify-content-between navbar-expand" style="background-image: linear-gradient( 180deg, rgba(25,120,190,1) 0%, rgba(37,60,119,1) 90% );letter-spacing: 2px;">
+            <a href="#" class="navbar-brand text-white font-weight-bold ">WeatherMap</a>
 
             <div class="navbar-brand text-right text-white" id="title">San Antonio - 5 Day Forcast</div>
 
         </nav>
 
 
-        <form onsubmit="return false" class="container-fluid row pt-3 align-items-center justify-items-center">
-            <h4 class="col-auto">Search</h4>
+        <form onsubmit="return false" class="container-fluid row p-4 align-items-center justify-content-center " >
             <input class="col-4 form-control" placeholder="San Antonio" type="text" id="searchBar">
             <button class="ml-2 col-2 btn btn-primary" id="searchButton">Search</button>
         </form>
 
         
-        <div class="d-flex flex-wrap justify-content-center" id="fiveDay">
+        <div class="d-flex flex-wrap justify-content-center" id="fiveDay" >
 
             <div class="card mx-2">
                 <div class="card-header">Loading</div>
@@ -60,8 +67,10 @@
         </div>
         
 
-        <div id='map' class="w-100 pt-4" style="height: 40em; bottom:0"></div>
+        
     </div>
+
+    <div id='map' class="w-100 pt-4" style="height: 40em; bottom:0"></div>
 </body>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 <script src="keys.js"></script>
