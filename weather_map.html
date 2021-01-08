@@ -15,12 +15,49 @@
     *{
         font-family: 'Oswald', sans-serif;
     }
+
+    .card:nth-of-type(1){
+        animation: expand .25s;
+    }
+    .card:nth-of-type(2){
+        animation: expand .35s;
+    }
+    .card:nth-of-type(3){
+        animation: expand .45s;
+    }
+    .card:nth-of-type(4){
+        animation: expand .55s;
+    }
+    .card:nth-of-type(5){
+        animation: expand .65s;
+    }
+
+    .card{
+        box-shadow: 3px 1px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes expand {
+        0% {
+            transform: scale(1);
+        }
+        70% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    form{
+        background: linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(94,192,247,0) 100%)
+    }
+
 </style>
     
 <body>
-    <div id="main" class="container-fluid p-0 m-0">
+    <div id="main" class="container-fluid p-0 m-0" style="min-height: 40em;height:100vh">
 
-        <nav class="navbar d-flex justify-content-between navbar-expand" style="background-image: linear-gradient( 180deg, rgba(25,120,190,1) 0%, rgba(37,60,119,1) 90% );letter-spacing: 2px;">
+        <nav class="navbar flex-wrap flex-sm-row d-flex justify-content-center justify-content-sm-between navbar-expand" style="background-image: linear-gradient( 180deg, rgba(25,120,190,1) 0%, rgba(37,60,119,1) 90% );letter-spacing: 2px;">
             <a href="#" class="navbar-brand text-white font-weight-bold ">WeatherMap</a>
 
             <div class="navbar-brand text-right text-white" id="title">San Antonio - 5 Day Forcast</div>
@@ -28,49 +65,26 @@
         </nav>
 
 
-        <form onsubmit="return false" class="container-fluid row p-4 align-items-center justify-content-center " >
-            <input class="col-4 form-control" placeholder="San Antonio" type="text" id="searchBar">
-            <button class="ml-2 col-2 btn btn-primary" id="searchButton">Search</button>
+        <form onsubmit="return false" class="container-fluid row m-0 p-4 align-items-center justify-content-center" >
+            <input class="col-8 col-sm-4 form-control" placeholder="San Antonio" type="text" id="searchBar">
+            <button class="ml-2 col-3 col-sm-3 btn btn-primary" id="searchButton">Search</button>
         </form>
 
         
         <div class="d-flex flex-wrap justify-content-center" id="fiveDay" >
 
-            <div class="card mx-2">
-                <div class="card-header">Loading</div>
-                <div class="card-body text-center">
-                    <div class="temp">
-                        Loading
-                    </div>
-                    <img src="" alt="icon">
-                    <hr>
-                    <div class="description pb-4">
-                        Description: Loading
-                    </div>
-                    <div class="humidity">
-                        Humidity: Loading
-                    </div>
-                    <hr>
-                    <div class="wind">
-                        Wind: Loading
-                    </div>
-                    <hr>
-                    <div class="pressure">
-                        Pressure: Loading
-                    </div>
-                </div>
-            </div>
-            
-
+            Loading..
             
 
         </div>
+        <div class="p-4 col">
+            <div id='map' class="p-4 col" style="min-height: 30em; ;"></div>
+        </div>
         
-
         
     </div>
 
-    <div id='map' class="w-100 pt-4" style="height: 40em; bottom:0"></div>
+    
 </body>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 <script src="keys.js"></script>

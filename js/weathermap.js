@@ -31,8 +31,9 @@ function changeBackground(city){
     
     $.ajax("https://api.teleport.org/api/urban_areas/slug:" + input.toLowerCase() + "/images/").done( (data,status)=>{
         
-        document.getElementById("main").style.background = 'url("' + data.photos[0].image.web + '")'
-        document.getElementById("main").style.backgroundSize = "cover"
+        document.body.style.background = 'url("' + data.photos[0].image.web + '")'
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundAttachment = "fixed"
     
     })
     
@@ -88,15 +89,18 @@ function createCard(data){
 
     document.getElementById("fiveDay").innerHTML = ""
 
+    //knowing the data we get from the JSON
+    //we parse it using a forEach for the array we get
     data.list.forEach( (day, i)=>{
 
-        if(i % 8 == 0){
+        if(i % 8 == 0){ //lets us see every day, 40/5 gets us 8
 
-
+            //the overall card container
             let card = document.createElement("div")
             card.setAttribute("class","text-white flex-column card m-2 p-0")
             card.setAttribute("style","min-width:12em; background: rgba(0,0,0,.65)")
 
+            //Putting the hr's in an array to keep better track of them
             let hr = [];
             hr.push(document.createElement("hr"))
             hr.push(document.createElement("hr"))
@@ -166,7 +170,7 @@ var currentLocation = [-98.4951, 29.4246]
 document.getElementById("searchBar").addEventListener('change', (e)=>{
     e.preventDefault()
     geoCode(e.target.value)
-})
+})//
 
 
 document.getElementById("searchButton").addEventListener('click', (e)=>{
