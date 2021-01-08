@@ -17,6 +17,10 @@
         font-family: 'Oswald', sans-serif;
     }
 
+    body::-webkit-scrollbar {
+        display: none;
+    }
+
     .card:nth-of-type(1){
         animation: expand .25s;
     }
@@ -60,6 +64,15 @@
     form{
         background: linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(94,192,247,0) 100%)
     }
+    
+    #autoList{
+        z-index: 2000;
+    }
+
+    .autocomplete-item:hover{
+        background: #0275d8;
+        color:white;
+    }
 
 </style>
     
@@ -83,16 +96,23 @@
             
 
         </div>
-        <div class="p-4 col">
+        <div class="p-4 col ">
+
             <div class="pl-4 col-2" style="z-index:110;position: relative;top: 4em;">
                 <button class="btn btn-primary" id="hideSearch"><i class="fa fa-search"></i>  </button>
             </div>
+
             <div id='map' class="p-4 col" style="min-height: 30em; ;"></div>
             
             <form onsubmit="return false" class="container-fluid row m-0 p-4 align-items-center justify-content-end justify-content-sm-center" style="z-index:100;position: relative;top: -22.5em;" >
-                <input class="col-8 m-0 m-sm-1 pr-0 mr-0 ml-5 m-sm-0 col-sm-4 form-control" placeholder="San Antonio" type="text" style="z-index:1000" id="searchBar">
+                <input autocomplete="off" class="col-8 m-0 m-sm-1 pr-0 mr-0 ml-5 m-sm-0 col-sm-4 form-control" placeholder="San Antonio" type="text" style="z-index:1000" id="searchBar">
                 <button class="ml-2 mt-2 mt-sm-0 col col-sm-3 btn btn-primary" id="searchButton">Search</button>
             </form>
+
+            <div class="rounded col m-auto w-50 justify-self-center text-center bg-white"id="autoList" style="position: relative;top: -23.5em;">
+
+            </div>
+
         </div>
         
         
