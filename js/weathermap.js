@@ -2,6 +2,14 @@ String.prototype.toProperCase = function () {
     return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 };
 
+$('form').hide()
+
+$("#hideSearch").click(()=>{
+
+    $('form').fadeToggle()
+
+})
+
 function get5Day(cords){
 
     let long = Math.floor(cords[0])
@@ -35,17 +43,23 @@ function changeBackground(city){
         document.body.style.backgroundSize = "cover";
         document.body.style.backgroundAttachment = "fixed"
     
+    }).fail(function() {
+        document.body.style.background = 'url("img/clouds.jpg")'
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundAttachment = "fixed"
     })
     
 }
 
 function geoCode(search){
+    if(typeof search == null)return
 
     if(typeof search == "object"){// if we give it an array
 
         $.ajax("https://api.mapbox.com/geocoding/v5/mapbox.places/" + search[0] + "," + search[1] + ".json?access_token=" + MAPBOXAPI).done( (data,status)=>{
         
             document.getElementById("title").innerHTML = data.features[0].text + " - 5 Day Forcast"
+            document.getElementById("searchBar").value = data.features[0].text 
             currentLocation = data.features[0].center // sets up easy var to access
             marker.setLngLat(data.features[0].center) //moves marker
             map.flyTo({
@@ -56,6 +70,9 @@ function geoCode(search){
         })
         
     }else{ //otherwise its a search term
+
+        if(search.length == "") return;
+
         var input = ""
         var args = String(search).split(" ")
         args.forEach( (arg,i) =>{
@@ -72,6 +89,7 @@ function geoCode(search){
             changeBackground(data.features[0].text)
             
             document.getElementById("title").innerHTML = data.features[0].text + " - 5 Day Forcast"
+            document.getElementById("searchBar").value = data.features[0].text 
             currentLocation = data.features[0].center // sets up easy var to access
             marker.setLngLat(data.features[0].center) //moves marker
             map.flyTo({

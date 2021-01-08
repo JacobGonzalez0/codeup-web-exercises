@@ -7,6 +7,7 @@
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css'/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 
 </head>
 
@@ -48,6 +49,14 @@
         }
     }
 
+    .hidden{
+        visibility: hidden;
+    }
+
+    #fiveDay{
+        background: linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(94,192,247,0) 100%)
+    }
+
     form{
         background: linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(94,192,247,0) 100%)
     }
@@ -65,20 +74,25 @@
         </nav>
 
 
-        <form onsubmit="return false" class="container-fluid row m-0 p-4 align-items-center justify-content-center" >
-            <input class="col-8 col-sm-4 form-control" placeholder="San Antonio" type="text" id="searchBar">
-            <button class="ml-2 col-3 col-sm-3 btn btn-primary" id="searchButton">Search</button>
-        </form>
+        
 
         
-        <div class="d-flex flex-wrap justify-content-center" id="fiveDay" >
+        <div class="d-flex flex-wrap justify-content-center pt-4" id="fiveDay" >
 
             Loading..
             
 
         </div>
         <div class="p-4 col">
+            <div class="pl-4 col-2" style="z-index:110;position: relative;top: 4em;">
+                <button class="btn btn-primary" id="hideSearch"><i class="fa fa-search"></i>  </button>
+            </div>
             <div id='map' class="p-4 col" style="min-height: 30em; ;"></div>
+            
+            <form onsubmit="return false" class="container-fluid row m-0 p-4 align-items-center justify-content-end justify-content-sm-center" style="z-index:100;position: relative;top: -22.5em;" >
+                <input class="col-8 m-0 m-sm-1 pr-0 mr-0 ml-5 m-sm-0 col-sm-4 form-control" placeholder="San Antonio" type="text" style="z-index:1000" id="searchBar">
+                <button class="ml-2 mt-2 mt-sm-0 col col-sm-3 btn btn-primary" id="searchButton">Search</button>
+            </form>
         </div>
         
         
