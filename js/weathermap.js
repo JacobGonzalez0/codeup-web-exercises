@@ -10,16 +10,33 @@ $("#hideSearch").click(()=>{
 
 })
 
+var units = 1;
+
+document.getElementById("units").addEventListener('click', ()=>{
+
+    units = units ? units = 0 : units = 1;
+    get5Day(currentLocation)
+})
+
 function get5Day(cords){
 
-    let long = Math.floor(cords[0])
-    let lat = Math.floor(cords[1])
+    let long = cords[0]
+    let lat = cords[1]
 
-    $.ajax("https://api.openweathermap.org/data/2.5/forecast?units=imperial&lat=" + lat +"&lon=" + long + "&appid=" + WEATHERKEY).done( (data,status)=>{
-        if(status == "success"){
-            createCard(data)
-        }
-    })
+    if(units){
+        $.ajax("https://api.openweathermap.org/data/2.5/forecast?units=metric&lat=" + lat +"&lon=" + long + "&appid=" + WEATHERKEY).done( (data,status)=>{
+            if(status == "success"){
+                createCard(data)
+            }
+        })
+    }else{
+        $.ajax("https://api.openweathermap.org/data/2.5/forecast?units=imperial&lat=" + lat +"&lon=" + long + "&appid=" + WEATHERKEY).done( (data,status)=>{
+            if(status == "success"){
+                createCard(data)
+            }
+        })
+    }
+    
 
 }
 
@@ -155,7 +172,12 @@ function createCard(data){
             let temp = document.createElement("div")
             temp.setAttribute("class","temp");
             temp.setAttribute("class","pb-4")
-            temp.innerHTML = day.main.temp + "&degF / " + day.main.feels_like + "&degF"
+            if(units == 1){
+                temp.innerHTML = day.main.temp + "&degC / " + day.main.feels_like + "&degC"
+            }else{
+                temp.innerHTML = day.main.temp + "&degF / " + day.main.feels_like + "&degF"
+            }
+            
 
             let icon = document.createElement("img");
             icon.src = "http://openweathermap.org/img/w/" + day.weather[0].icon + ".png"
