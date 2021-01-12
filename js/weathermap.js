@@ -2,21 +2,7 @@ String.prototype.toProperCase = function () {
     return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 };
 
-$('form').hide()
 
-$("#hideSearch").click(()=>{
-
-    $('form').fadeToggle()
-
-})
-
-var units = 1;
-
-document.getElementById("units").addEventListener('click', ()=>{
-
-    units = units ? units = 0 : units = 1;
-    get5Day(currentLocation)
-})
 
 function get5Day(cords){
 
@@ -75,6 +61,7 @@ function geoCode(search, flag = 0){
 
         $.ajax("https://api.mapbox.com/geocoding/v5/mapbox.places/" + search[0] + "," + search[1] + ".json?access_token=" + MAPBOXAPI).done( (data,status)=>{
         
+            document.title = "WeatherMap - " + data.features[0].text
             document.getElementById("title").innerHTML = data.features[0].text + " - 5 Day Forcast"
             document.getElementById("searchBar").value = data.features[0].text 
             currentLocation = data.features[0].center // sets up easy var to access
@@ -115,7 +102,7 @@ function geoCode(search, flag = 0){
             $.ajax("https://api.mapbox.com/geocoding/v5/mapbox.places/" + input + ".json?access_token=" + MAPBOXAPI).done( (data,status)=>{
         
                 changeBackground(data.features[0].text)
-                
+                document.title = "WeatherMap - " + data.features[0].text
                 document.getElementById("title").innerHTML = data.features[0].text + " - 5 Day Forcast"
                 document.getElementById("searchBar").value = data.features[0].text 
                 currentLocation = data.features[0].center // sets up easy var to access
@@ -221,10 +208,7 @@ function createCard(data){
 
 }
 
-var currentLocation = [-98.4951, 29.4246]
-
-
-
+//Setup event listeners
 document.getElementById("searchBar").addEventListener('change', (e)=>{
     e.preventDefault()
     geoCode(e.target.value)
@@ -234,14 +218,27 @@ document.getElementById("searchBar").addEventListener('input', (e)=>{
     geoCode(e.target.value, true)
 })
 
-
-
 document.getElementById("searchButton").addEventListener('click', (e)=>{
     e.preventDefault()
     geoCode(e.target.value)
 })
 
-geoCode("san antonio")
+document.getElementById("units").addEventListener('click', ()=>{
+
+    units = units ? units = 0 : units = 1;
+    get5Day(currentLocation)
+})
+
+//
+$('form').hide()
+$("#hideSearch").click(()=>{
+
+    $('form').fadeToggle()
+
+})
+
+var units = 0;
+var currentLocation = [-98.4951, 29.4246]
 
 var map = new mapboxgl.Map({
     container: 'map',
@@ -354,3 +351,5 @@ function autocomplete(inp, arr) {
     }
   }
 }
+
+geoCode("san antonio")
