@@ -4,8 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Promises</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css'/>
 </head>
 <body>
+    <div class="container">
+        <form class="form-control" id="search">
+            <div class="row p-2">
+                <input class="form-control col" type="text" id="username">
+                <button id="searchButton" class="btn btn-primary col-2 ms-2">Get Info</button>
+            </div>
+        </form>
+
+        <div class="row shadow rounded p-4 mt-2 d-sm-flex flex-wrap" id="data">
+            <div class="row ">
+                <div class="col-2">
+                    Avatar
+                </div>
+                <div class="col">
+                    Username
+                </div>
+                <div class="col">
+                    Last Repo
+                </div>
+                <div class="col">
+                    Commit
+                </div>
+                <div class="col">
+                    Date
+                </div>
+            </div>
+            <hr class="m-2">
+        </div>
+
+    </div>
     
 </body>
 <script src="keys.js"></script>
