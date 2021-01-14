@@ -1,48 +1,71 @@
-
 function getLatestCommits(username){
-    let url = `https://api.github.com/users/${username}/repos`
+
+    let users = username.split(" ")
+
+    users.forEach( user =>{
 
 
-    let data = fetch(url, {headers: {'Authorization': GITKEY}})
-    data.then( (res) => {
-        res.json().then(data=>{
+        let url = `https://api.github.com/users/${user}/repos`
 
-            let firstDate = Date.parse(data[0].updated_at)
+        let data = fetch(url, {headers: {'Authorization': GITKEY}})
 
-            
-            let lastRepoUpdate = data.reduce( (last,current,index)=>{
-                if(index == data.length-1) return last.name
-                return Date.parse(last.updated_at) > Date.parse(current.updated_at) ? last : current; 
-            }, data[0]) //parse date so we can get a number to compare
-            
-            
-            let url = `https://api.github.com/repos/${username}/${lastRepoUpdate}/commits`
+        data.then( (res) => {
 
-            //start grabbing the commits from the last repo made
-            let commits = fetch(url, {headers: {'Authorization': GITKEY}})
-            commits.then( res =>{
-
+            if(res.status == 200){
                 res.json().then(data=>{
-                    //we got our last commit
-                    let dateSec = Date.parse(data[0].commit.author.date)//gets UNIX time        
-                    let date = new Date(dateSec)//sets UNIX time
-                    generateUserInfo({
-                        date,
-                        username: data[0].author.login,
-                        avatar: data[0].author.avatar_url,
-                        repo: lastRepoUpdate,
-                        commit: data[0].commit.message
+
+                    let firstDate = Date.parse(data[0].updated_at)
+        
+                    
+                    let lastRepoUpdate = data.reduce( (last,current,index)=>{
+                        if(index == data.length-1) return last.name
+                        return Date.parse(last.updated_at) > Date.parse(current.updated_at) ? last : current; 
+                    }, data[0]) //parse date so we can get a number to compare
+                    
+                    
+                    let url = `https://api.github.com/repos/${user}/${lastRepoUpdate}/commits`
+        
+                    //start grabbing the commits from the last repo made
+                    let commits = fetch(url, {headers: {'Authorization': GITKEY}})
+                    commits.then( res =>{
+        
+                        res.json().then(data=>{
+                            //we got our last commit
+                            let dateSec = Date.parse(data[0].commit.author.date)//gets UNIX time        
+                            let date = new Date(dateSec)//sets UNIX time
+                            generateUserInfo({
+                                date,
+                                username: data[0].author.login,
+                                avatar: data[0].author.avatar_url,
+                                repo: lastRepoUpdate,
+                                commit: data[0].commit.message
+                            })
+                        })
+        
                     })
+        
                 })
-
-            })
-
+            }else{
+                generateUserInfo({
+                    date : "Invalid User",
+                    username: "Invalid User",
+                    avatar: "Invalid User",
+                    repo: "Invalid User",
+                    commit: "Invalid User"
+                })
+            }
+        
         })
+        
     })
 
-}
 
-getLatestCommits("jacobgonzalez0")
+    
+    
+
+    
+
+}
 
 function wait(ms){
 
@@ -66,6 +89,12 @@ document.getElementById("searchButton").addEventListener("click", (e)=>{
         getLatestCommits(document.getElementById("username").value)
     )
 })
+document.getElementById("searchButton2").addEventListener("click", (e)=>{
+    e.preventDefault()
+    generateUserInfo(
+        getLatestCommits(document.getElementById("usernames").value)
+    )
+})
 
 document.getElementById("search").addEventListener("submit", (e)=>{
     e.preventDefault()
@@ -74,6 +103,21 @@ document.getElementById("search").addEventListener("submit", (e)=>{
     )
     
 })
+
+function getTeam(name){
+
+    let codeup = "CodeupClassroom"
+    
+    let url = `https://api.github.com/orgs/${codeup}/teams`
+
+    let data = fetch(url, {headers: {'Authorization': GITKEY}})
+    
+    data.then( res =>{
+        res.json().then( data=>{
+            console.log(data)
+        })
+    })
+}
 
 function generateUserInfo(data){
 
@@ -112,6 +156,5 @@ function generateUserInfo(data){
     //append to the target
 
     target.appendChild(row)
-
 
 }
