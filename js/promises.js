@@ -1,3 +1,4 @@
+
 function getLatestCommits(username){
 
     let users = username.split(" ")
@@ -6,8 +7,12 @@ function getLatestCommits(username){
 
 
         let url = `https://api.github.com/users/${user}/repos`
-
-        let data = fetch(url, {headers: {'Authorization': GITKEY}})
+        if(typeof GITKEY == "undefined"){
+            var data = fetch(url)
+        }else{
+            var data = fetch(url, {headers: {'Authorization': GITKEY}})
+        }
+        
 
         data.then( (res) => {
 
@@ -26,7 +31,12 @@ function getLatestCommits(username){
                     let url = `https://api.github.com/repos/${user}/${lastRepoUpdate}/commits`
         
                     //start grabbing the commits from the last repo made
-                    let commits = fetch(url, {headers: {'Authorization': GITKEY}})
+                    if(typeof GITKEY == "undefined"){
+                        var commits = fetch(url)
+                    }else{
+                        var commits = fetch(url, {headers: {'Authorization': GITKEY}})
+                    }
+                    
                     commits.then( res =>{
         
                         res.json().then(data=>{
@@ -110,6 +120,7 @@ function getTeam(name){
     
     let url = `https://api.github.com/orgs/${codeup}/teams`
 
+    
     let data = fetch(url, {headers: {'Authorization': GITKEY}})
     
     data.then( res =>{
