@@ -114,22 +114,6 @@ document.getElementById("search").addEventListener("submit", (e)=>{
     
 })
 
-function getTeam(name){
-
-    let codeup = "CodeupClassroom"
-    
-    let url = `https://api.github.com/orgs/${codeup}/teams`
-
-    
-    let data = fetch(url, {headers: {'Authorization': GITKEY}})
-    
-    data.then( res =>{
-        res.json().then( data=>{
-            console.log(data)
-        })
-    })
-}
-
 function generateUserInfo(data){
 
     let target = document.getElementById("data")
