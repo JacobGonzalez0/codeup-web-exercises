@@ -24,7 +24,8 @@ function getLatestCommits(username){
 
                 res.json().then(data=>{
                     //we got our last commit
-                    let date = Date.parse(data[0].commit.author.date)
+                    let dateSec = Date.parse(data[0].commit.author.date)//gets UNIX time        
+                    let date = new Date(dateSec)//sets UNIX time
                     console.log(date)
                 })
 
