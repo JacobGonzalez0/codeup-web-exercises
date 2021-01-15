@@ -6,8 +6,15 @@
     <title>Promises</title>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css'/>
 </head>
+<style>
+    body{
+        background: url("img/dark-honeycomb.png");
+        background-attachment: fixed;
+    }
+</style>
 <body>
-    <div class="container">
+    <div class="container-fluid container-md m-0 m-md-auto">
+        <h1 class="text-center p-2">Git Latest Commits</h1>
         <form class="form-control" id="search">
             <div class="row p-2">
                 <input class="form-control col" placeholder="git-user" type="text" id="username">
@@ -22,25 +29,7 @@
             </div>
         </form>
 
-        <div class="row shadow rounded p-4 mt-2 d-sm-flex flex-wrap" id="data">
-            <div class="row ">
-                <div class="col-2">
-                    Avatar
-                </div>
-                <div class="col">
-                    Username
-                </div>
-                <div class="col">
-                    Last Repo
-                </div>
-                <div class="col">
-                    Commit
-                </div>
-                <div class="col">
-                    Date
-                </div>
-            </div>
-            <hr class="m-2">
+        <div class=" bg-white mt-3 rounded d-flex flex-wrap align-items-center justify-content-center" id="data">
         </div>
 
     </div>

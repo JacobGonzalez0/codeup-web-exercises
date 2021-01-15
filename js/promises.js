@@ -119,35 +119,40 @@ function generateUserInfo(data){
     let target = document.getElementById("data")
     //target.innerHTML = ""
 
-    let row = document.createElement("row")
-    row.setAttribute("class", "row");
+    let row = document.createElement("div")
+    row.setAttribute("class", "card m-2");
+    row.setAttribute("style", "width:18em")
 
     //setup columns
     let avatar = document.createElement("img");
-    avatar.setAttribute("class", "col-2 ");
+    avatar.setAttribute("class", "card-img-top");
     avatar.src = data.avatar;
 
-    let username = document.createElement("col");
-    username.setAttribute("class", "col");
-    username.innerHTML = data.username;
+    let list = document.createElement("ul");
+    list.setAttribute("class","list-group list-group-flush")
 
-    let lastRepo = document.createElement("col");
-    lastRepo.setAttribute("class", "col");
-    lastRepo.innerHTML = data.repo
+    let username = document.createElement("li");
+    username.setAttribute("class", "list-group-item");
+    username.innerHTML = "<strong>Username:</strong> " + data.username;
 
-    let commit = document.createElement("col");
-    commit.setAttribute("class", "col");
-    commit.innerHTML = data.commit;
+    let lastRepo = document.createElement("li");
+    lastRepo.setAttribute("class", "list-group-item");
+    lastRepo.innerHTML = "<strong>Last Repo:</strong> " + data.repo
 
-    let date = document.createElement("col");
-    date.setAttribute("class", "col");
-    date.innerHTML = data.date
+    let commit = document.createElement("li");
+    commit.setAttribute("class", "list-group-item");
+    commit.innerHTML = "<strong>Commit Msg:</strong> " + data.commit;
+
+    let date = document.createElement("li");
+    date.setAttribute("class", "list-group-item");
+    date.innerHTML = "<strong>Date:</strong> " + data.date
 
     row.appendChild(avatar);
-    row.appendChild(username);
-    row.appendChild(lastRepo);
-    row.appendChild(commit);
-    row.appendChild(date);
+    list.appendChild(username);
+    list.appendChild(lastRepo);
+    list.appendChild(commit);
+    list.appendChild(date);
+    row.appendChild(list)
     //append to the target
 
     target.appendChild(row)
